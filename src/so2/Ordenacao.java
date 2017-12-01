@@ -19,6 +19,7 @@ import java.util.Scanner;
 public class Ordenacao{
     int i =0,j=0,aux2,braco,max, v,s,aux,dir,mais=braco,menos=braco,vix,menor,controle;
     double mfcfs,mssf,mscan,mcscan;
+    String ffcfs="dados FCFS\n",sssf="dados SSF\n",sscan="dados SCAN\n",ccscan="dados C-SCAN\n";
     ArrayList fcfs = new ArrayList();
     ArrayList ssf = new ArrayList();
     ArrayList scan = new ArrayList();
@@ -203,26 +204,28 @@ public class Ordenacao{
          for(i=1;i<cscan.size();i++){
             b=(int) cscan.get(i-1);
             a=(int)cscan.get(i);
-            System.out.println((b-a)+" "+mcscan+" "+t);
-            if (b==menos && a!=menos){
-                t+=Math.pow((Math.abs((b+this.max-a)-mcscan)), 2);
+            
+            if (dir==-1 && b==menos && a!=menos){
+                t+=Math.pow((b+this.max-a)-mcscan, 2);
             }
-            else if((b==mais && a!=mais))
-                t+=Math.pow((Math.abs((this.max-b+a)-mcscan)), 2);
-            else
-                t+=Math.pow(Math.abs(b-a), 2);
+            else if((dir==1 && b==mais && a!=mais)){
+                t+=Math.pow((this.max-b+a)-mcscan, 2);
+            }
+            else{
+                t+=Math.pow(Math.abs(b-a)-mcscan, 2);
+            }
         }
-         
         return t/(cscan.size()-2);
      }
+    
     public int movimentocscan(){
         int b,a,t=0;
         for(i=1;i<cscan.size();i++){
             b=(int) cscan.get(i-1);
             a=(int)cscan.get(i);
-            if (b==menos && a!=menos)
+            if (dir==-1 && b==menos && a!=menos)
                 t+=(b+this.max-a);
-            else if((b==mais && a!=mais))
+            else if((dir==1 && b==mais && a!=mais))
                 t+=(this.max-b+a);
             else
                 t+=Math.abs(b-a);
@@ -230,21 +233,25 @@ public class Ordenacao{
         return t;
     }
     public void mediafcfs(){
-        double v=movimentos(this.fcfs)/this.fcfs.size();
-        this.mfcfs=v;
+        double v=movimentos(this.fcfs);
+        this.mfcfs=v/(this.fcfs.size()-1);
+        this.ffcfs+=("quantidade de movimentos "+v+"\n"+"média de movimentos: "+this.mfcfs+"\n");
+        
     }
     public void mediassf(){
-        double v=movimentos(this.ssf)/this.ssf.size();
-        this.mssf=v;
+        double v=movimentos(this.ssf);
+        this.mssf=v/(this.ssf.size()-1);
+        this.sssf+=("quantidade de movimentos "+v+"\n"+"média de movimentos: "+this.mssf+"\n");
     }
     public void mediascan(){
-        double v=movimentos(this.scan)/this.scan.size();
-        this.mscan=v;
+        double v=movimentos(this.scan);
+        this.mscan=v/(this.scan.size()-1);
+        this.sscan+=("quantidade de movimentos "+v+"\n"+"média de movimentos: "+this.mscan+"\n");
     }
     public void mediacscan(){
-        double v=movimentocscan()/this.cscan.size();
-        System.out.println("media"+v);
-        this.mcscan=v;
+        double v=movimentocscan();
+        this.mcscan=v/(this.cscan.size()-1);
+        this.ccscan+=("quantidade de movimentos "+v+"\n"+"média de movimentos: "+this.mcscan+"\n");
     }
    // public int variancia(ArrayList lista,boolean c){
         

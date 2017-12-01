@@ -137,6 +137,7 @@ public class Principal {
                 //gravarArq.printf("   "+ord.tempo(tempo, ord.scan));
                 arq.close();
             }
+            
             catch(IOException e){} 
             try{
                 FileWriter arq = new FileWriter("C:\\Users\\Sergio Barros\\Desktop\\"+nome+"CSCAN.txt");
@@ -151,13 +152,29 @@ public class Principal {
             catch(IOException e){}
             
           
-       System.out.println(ord.fcfs.size()+" "+ord.ssf.size()+" "+ord.cscan.size()+" "+ord.scan.size()+" ");
-       System.out.println(ord.movimentocscan()+" "+ord.movimentos(ord.fcfs)+" "+ord.movimentos(ord.ssf)+" "+ord.movimentos(ord.scan));
-       ord.mediafcfs();
-       ord.mediascan();
-       ord.mediassf();
-       ord.mediacscan();
-       System.out.println(ord.varianciacscan()+" "+ ord.variancia(ord.ssf,ord.mssf));
+            System.out.println(ord.fcfs.size()+" "+ord.ssf.size()+" "+ord.cscan.size()+" "+ord.scan.size()+" ");
+            System.out.println(ord.movimentocscan()+" "+ord.movimentos(ord.fcfs)+" "+ord.movimentos(ord.ssf)+" "+ord.movimentos(ord.scan));
+            ord.mediafcfs();
+            ord.mediascan();
+            ord.mediassf();
+            ord.mediacscan();
+            ord.ffcfs+="Tempo médio de deslocamento: "+ord.mfcfs*tempo+"milisegundos\n";
+            ord.sssf+="Tempo médio de deslocamento: "+ord.mssf*tempo+"milisegundos\n";
+            ord.sscan+="Tempo médio de deslocamento: "+ord.mscan*tempo+"milisegundos\n";
+            ord.ccscan+="Tempo médio de deslocamento: "+ord.mcscan*tempo+"milisegundos\n";
+            double auxx;
+            auxx=ord.variancia(ord.fcfs, ord.mfcfs);
+            ord.ffcfs+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
+            auxx=ord.variancia(ord.ssf, ord.mssf);
+            ord.sssf+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
+            auxx=ord.variancia(ord.scan, ord.mscan);
+            ord.sscan+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
+            auxx=ord.variancia(ord.cscan, ord.mcscan);
+            ord.ccscan+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
+            System.out.println(ord.ffcfs);
+            System.out.println(ord.sssf);
+            System.out.println(ord.sscan);
+            System.out.println(ord.ccscan);
         }
 
 }
