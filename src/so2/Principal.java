@@ -13,25 +13,30 @@ import javax.swing.JFrame;
 public class Principal {
 
 	private static final String FILENAME = "C:\\Users\\Sergio Barros\\Desktop\\";
-
-	public static void main(String[] args)  {
+        
+	public static void main(String[] args) throws InterruptedException  {
             Scanner sc = new Scanner(System.in);
-            
-            
+            boolean cont=false;
+            entradas ent = new entradas();
+            ent.setVisible(true);
             BufferedReader br = null;
             FileReader fr = null;
             int i =0,j=0,aux2,max,tempo=0,braco=0;
             String[] x=null;
             String nome;
             
+            do{
             System.out.print("Digite o Nome do Arquivo:");
-            nome = sc.nextLine();
+            //nome = sc.nextLine();
+            ent.v.acquire();
+            nome=ent.nome;
+           
             try {
-
+                
                 //br = new BufferedReader(new FileReader(FILENAME));
                 fr = new FileReader(FILENAME+nome+".txt");
                 br = new BufferedReader(fr);
-
+                
                 String sCurrentLine;
 
                 while ((sCurrentLine = br.readLine()) != null) {
@@ -40,10 +45,13 @@ public class Principal {
                         System.out.println(x.length);
                         
                     }
-
-
+                cont=true;
+                //ent.v.release();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("arquivo inexistente");
+                ent.label1v();
+                cont=false;
+                //e.printStackTrace();
             } finally {
                 try {
                     if (br != null)
@@ -51,26 +59,39 @@ public class Principal {
                     if (fr != null)
                             fr.close();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    cont=false;
+                
+                    //ex.printStackTrace();
                 }
         }
-            boolean cont=false;
+            }while(cont==false);
+            
+             cont=false;
             Ordenacao ord = new Ordenacao(x);
+            ent.mais=ord.mais;
+            System.out.println(ent.max);
+            ent.entrada1();
             do{
                 try{
                     System.out.print("Digite o Numero de Cilindros:");
-                    max = Integer.parseInt(sc.nextLine());
+                    ent.v.acquire();
+                    //nome=;
+                    max = Integer.parseInt(ent.nome);
+                    ent.max=max;
                     cont=ord.max(max);
                 }catch(Exception e){
                     System.out.println("Valor inválido, Tente novamente");
+                    ent.label1v();
                     cont=false;
                     continue;}
             }while(cont==false);
+            ent.entrada2();
             cont=false;
             do{
                 try{
                     System.out.print("Digite onde está o braço:");
-                    braco = Integer.parseInt(sc.nextLine());
+                    ent.v.acquire();
+                    braco = Integer.parseInt(ent.nome);
                    
                     cont=true;
                 }catch(Exception e){
@@ -80,13 +101,16 @@ public class Principal {
                 }while(braco>ord.max || cont==false);
             
             cont=false;
+            ent.entrada3();
             do{
                 try{
                     System.out.print("Digite o tempo de Seek em milisegundos:");
-                    tempo = Integer.parseInt(sc.nextLine());
+                    ent.v.acquire();
+                    tempo = Integer.parseInt(ent.nome);
                     cont=true;
                 }catch(Exception e){
                     System.out.println("Valor inválido, Tente novamente");
+                    ent.label1v();
                     continue;
                 }
             }while(cont==false);
@@ -175,6 +199,7 @@ public class Principal {
             System.out.println(ord.sssf);
             System.out.println(ord.sscan);
             System.out.println(ord.ccscan);
+            ent.fim(ord.ffcfs,ord.sssf,ord.sscan,ord.ccscan);
         }
 
 }
