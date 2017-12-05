@@ -134,7 +134,7 @@ public class Principal {
                 System.out.println(i+" fcfs "+ord.cscan.get(i));
             }
             try{
-                FileWriter arq = new FileWriter("C:\\Users\\Sergio Barros\\Desktop\\"+nome+"FCFS.txt");
+                FileWriter arq = new FileWriter(FILENAME+nome+"FCFS.txt");
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.printf("Ordem de leitura do FCFS - ");
                 for(i=0;i<ord.fcfs.size();i++){
@@ -144,7 +144,7 @@ public class Principal {
             }
             catch(IOException e){}
             try{
-                FileWriter arq = new FileWriter("C:\\Users\\Sergio Barros\\Desktop\\"+nome+"SSF.txt");
+                FileWriter arq = new FileWriter(FILENAME+nome+"SSF.txt");
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.printf("Ordem de leitura do SSF - ");
                 for(i=0;i<ord.ssf.size();i++){
@@ -154,7 +154,7 @@ public class Principal {
             }
             catch(IOException e){} 
             try{
-                FileWriter arq = new FileWriter("C:\\Users\\Sergio Barros\\Desktop\\"+nome+"SCAN.txt");
+                FileWriter arq = new FileWriter(FILENAME+nome+"SCAN.txt");
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.printf("Ordem de leitura do SCAN - ");
                 for(i=0;i<ord.scan.size();i++){
@@ -166,7 +166,7 @@ public class Principal {
             
             catch(IOException e){} 
             try{
-                FileWriter arq = new FileWriter("C:\\Users\\Sergio Barros\\Desktop\\"+nome+"CSCAN.txt");
+                FileWriter arq = new FileWriter(FILENAME+nome+"CSCAN.txt");
                 PrintWriter gravarArq = new PrintWriter(arq);
                // gravarArq.printf("Ordem de leitura do C-SCAN - ");
                 for(i=0;i<ord.cscan.size();i++){
