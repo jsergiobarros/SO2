@@ -21,7 +21,8 @@ public class Principal {
             ent.setVisible(true);
             BufferedReader br = null;
             FileReader fr = null;
-            int i =0,j=0,aux2,max,tempo=0,braco=0;
+            int i =0,max,braco=0;
+            double tempo=0;
             String[] x=null;
             String nome;
             
@@ -97,6 +98,7 @@ public class Principal {
                 }catch(Exception e){
                     cont=false;
                     System.out.println("Valor inválido, Tente novamente");
+                    ent.label1v();
                     continue;}
                 }while(braco>ord.max || cont==false);
             
@@ -106,7 +108,7 @@ public class Principal {
                 try{
                     System.out.print("Digite o tempo de Seek em milisegundos:");
                     ent.v.acquire();
-                    tempo = Integer.parseInt(ent.nome);
+                    tempo = Double.parseDouble(ent.nome);
                     cont=true;
                 }catch(Exception e){
                     System.out.println("Valor inválido, Tente novamente");
