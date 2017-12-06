@@ -12,9 +12,21 @@ import javax.swing.JFrame;
 
 public class Principal {
 
-	private static final String FILENAME = "C:\\Users\\Sergio Barros\\Desktop\\";
+	public static String FILENAME ;
+        public static String nome;
+        public static String end;
+        public int cilindro;
+        public int pbraco;
+        public int seek;
         
+        
+    
 	public static void main(String[] args) throws InterruptedException  {
+            
+            
+        }
+            
+        public void start(){    
             Scanner sc = new Scanner(System.in);
             boolean cont=false;
             entradas ent = new entradas();
@@ -24,18 +36,18 @@ public class Principal {
             int i =0,max,braco=0;
             double tempo=0;
             String[] x=null;
-            String nome;
             
-            do{
+            
+            
             System.out.print("Digite o Nome do Arquivo:");
             //nome = sc.nextLine();
-            ent.v.acquire();
-            nome=ent.nome;
+//            ent.v.acquire();
+//            nome=ent.nome;
            
             try {
                 
                 //br = new BufferedReader(new FileReader(FILENAME));
-                fr = new FileReader(FILENAME+nome+".txt");
+                fr = new FileReader(end);
                 br = new BufferedReader(fr);
                 
                 String sCurrentLine;
@@ -65,7 +77,7 @@ public class Principal {
                     //ex.printStackTrace();
                 }
         }
-            }while(cont==false);
+            while(cont==false);
             
              cont=false;
             Ordenacao ord = new Ordenacao(x);
@@ -73,48 +85,49 @@ public class Principal {
             System.out.println(ent.max);
             ent.entrada1();
             do{
-                try{
-                    System.out.print("Digite o Numero de Cilindros:");
-                    ent.v.acquire();
+               
+//                    System.out.print("Digite o Numero de Cilindros:");
+//                    ent.v.acquire();
                     //nome=;
-                    max = Integer.parseInt(ent.nome);
+                    max = cilindro;
                     ent.max=max;
                     cont=ord.max(max);
-                }catch(Exception e){
-                    System.out.println("Valor inválido, Tente novamente");
-                    ent.label1v();
-                    cont=false;
-                    continue;}
+              
+//                    System.out.println("Valor inválido, Tente novamente");
+//                    ent.label1v();
+//                    cont=false;
+                   
             }while(cont==false);
             ent.entrada2();
             cont=false;
             do{
-                try{
-                    System.out.print("Digite onde está o braço:");
-                    ent.v.acquire();
-                    braco = Integer.parseInt(ent.nome);
+                
+//                    System.out.print("Digite onde está o braço:");
+//                    ent.v.acquire();
+                    braco = pbraco;
                    
                     cont=true;
-                }catch(Exception e){
-                    cont=false;
-                    System.out.println("Valor inválido, Tente novamente");
-                    ent.label1v();
-                    continue;}
+                
+//                    cont=false;
+//                    System.out.println("Valor inválido, Tente novamente");
+//                    ent.label1v();
+//                    continue;
+
                 }while(braco>ord.max || cont==false);
             
             cont=false;
             ent.entrada3();
             do{
-                try{
-                    System.out.print("Digite o tempo de Seek em milisegundos:");
-                    ent.v.acquire();
-                    tempo = Double.parseDouble(ent.nome);
+//                try{
+//                    System.out.print("Digite o tempo de Seek em milisegundos:");
+//                    ent.v.acquire();
+                    tempo = seek;
                     cont=true;
-                }catch(Exception e){
-                    System.out.println("Valor inválido, Tente novamente");
-                    ent.label1v();
-                    continue;
-                }
+//                }catch(Exception e){
+//                    System.out.println("Valor inválido, Tente novamente");
+//                    ent.label1v();
+//                    continue;
+////                }
             }while(cont==false);
             
             ord.braco(braco);
@@ -134,7 +147,7 @@ public class Principal {
                 System.out.println(i+" fcfs "+ord.cscan.get(i));
             }
             try{
-                FileWriter arq = new FileWriter(FILENAME+nome+"FCFS.txt");
+                FileWriter arq = new FileWriter(FILENAME+"\\FCFS"+nome);
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.printf("Ordem de leitura do FCFS - ");
                 for(i=0;i<ord.fcfs.size();i++){
@@ -144,7 +157,7 @@ public class Principal {
             }
             catch(IOException e){}
             try{
-                FileWriter arq = new FileWriter(FILENAME+nome+"SSF.txt");
+                FileWriter arq = new FileWriter(FILENAME+"\\SSF"+nome);
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.printf("Ordem de leitura do SSF - ");
                 for(i=0;i<ord.ssf.size();i++){
@@ -154,7 +167,7 @@ public class Principal {
             }
             catch(IOException e){} 
             try{
-                FileWriter arq = new FileWriter(FILENAME+nome+"SCAN.txt");
+                FileWriter arq = new FileWriter(FILENAME+"\\SCAN"+nome);
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.printf("Ordem de leitura do SCAN - ");
                 for(i=0;i<ord.scan.size();i++){
@@ -166,7 +179,7 @@ public class Principal {
             
             catch(IOException e){} 
             try{
-                FileWriter arq = new FileWriter(FILENAME+nome+"CSCAN.txt");
+                FileWriter arq = new FileWriter(FILENAME+"\\CSCAN"+nome);
                 PrintWriter gravarArq = new PrintWriter(arq);
                // gravarArq.printf("Ordem de leitura do C-SCAN - ");
                 for(i=0;i<ord.cscan.size();i++){

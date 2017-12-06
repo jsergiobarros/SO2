@@ -68,7 +68,7 @@ public class entradas extends javax.swing.JFrame {
 
         label.setText("Ultima solicitação do arquivo: "+max);
         label.setVisible(false);
-        getContentPane().add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         jLabel1.setText("Valor inválido, digite novamente");
         jLabel1.setVisible(false);
@@ -162,18 +162,18 @@ public class entradas extends javax.swing.JFrame {
         this.jScrollPane8.setVisible(true);
         this.jScrollPane5.setVisible(true);
     }
+    private void arqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arqNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_arqNomeActionPerformed
+
     private void bArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bArquivoActionPerformed
         jLabel1.setVisible(false);
         nome=arqNome.getText();
         v.release();
-        
-        //this.setVisible(false);
-        
-    }//GEN-LAST:event_bArquivoActionPerformed
 
-    private void arqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arqNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_arqNomeActionPerformed
+        //this.setVisible(false);
+
+    }//GEN-LAST:event_bArquivoActionPerformed
 
     /**
      * @param args the command line arguments
