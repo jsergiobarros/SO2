@@ -192,7 +192,7 @@ public class Principal {
             
           
             System.out.println(ord.fcfs.size()+" "+ord.ssf.size()+" "+ord.cscan.size()+" "+ord.scan.size()+" ");
-            System.out.println(ord.movimentocscan()+" "+ord.movimentos(ord.fcfs)+" "+ord.movimentos(ord.ssf)+" "+ord.movimentos(ord.scan));
+            System.out.println(ord.movimentocscan()+" "+ord.movimentos(ord.fcfs)+" "+ord.movimentos(ord.ssf)+" "+ord.movimentoscan());
             ord.mediafcfs();
             ord.mediascan();
             ord.mediassf();
@@ -206,9 +206,9 @@ public class Principal {
             ord.ffcfs+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
             auxx=ord.variancia(ord.ssf, ord.mssf);
             ord.sssf+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
-            auxx=ord.variancia(ord.scan, ord.mscan);
+            auxx=ord.varianciascan();
             ord.sscan+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
-            auxx=ord.variancia(ord.cscan, ord.mcscan);
+            auxx=ord.varianciacscan();
             ord.ccscan+=("variancia "+auxx+"\n"+"desvio padrão "+Math.pow(auxx, 0.5)+"\n");
             System.out.println(ord.ffcfs);
             System.out.println(ord.sssf);
