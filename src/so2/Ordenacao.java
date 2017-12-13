@@ -213,33 +213,59 @@ public class Ordenacao{
         for(i=1;i<scan.size();i++){
             b=(int) scan.get(i-1);
             a=(int)scan.get(i);
-            /*if(b==menos && a!=menos)
+            if(b==menos && a!=menos){
                 t+=Math.pow((Math.abs(b-a)+menos*2-mscan),2);
-            if(b==mais && a!=mais)
+                
+            }
+            else if(b==mais && a!=mais){
                 t+=Math.pow((Math.abs(b-a)+(max-mais)*2-mscan),2);
-            else*/
+                
+            }
+            else{
                 t+=Math.pow((Math.abs(b-a)-mscan),2);
-            System.out.println("t= "+t);
+                
+            }
+            
         }
         return t/(scan.size()-2);
     }
     
      public double varianciacscan(){
          double b,a,t=0;
+         
          for(i=1;i<cscan.size();i++){
             b=(int) cscan.get(i-1);
             a=(int)cscan.get(i);
-            
-           // if (b==menos && a!=menos){
-            //    t+=Math.pow((b+this.max-a)+this.max-mcscan, 2);
-           // }
-          //  else if((b==mais && a!=mais)){
-                //t+=Math.pow((this.max-b+a)+this.max-mcscan, 2);
-        //    }
-         //   else{
-                t+=Math.pow(Math.abs(b-a)-mcscan, 2);
-       //     }
+            if (dir==-1 && b==menos && a!=menos){
+                t+=Math.pow((b+this.max-a)+this.max-mcscan,2);
+                System.out.println((int)(b+this.max-a)+this.max);
+            }
+            else if((dir==1 && b==mais && a!=mais)){
+                t+=Math.pow((this.max-b+a)+this.max-mcscan,2);
+                System.out.println((int)(this.max-b+a)+this.max);
+            }  
+            else{
+                t+=Math.pow(Math.abs(b-a)-mcscan,2);
+                System.out.println((int)Math.abs(b-a));
+            }
         }
+       
+            
+            
+            
+            /*
+            if (dir=true && b==menos && a!=menos){
+              t+=Math.pow((b+this.max-a+this.max)-mcscan, 2);
+              System.out.println(i+" i"+(int)(b+this.max-a+this.max));
+            }
+            else if((dir==false && b==mais && a!=mais)){
+                t+=Math.pow((this.max-b+a+this.max)-mcscan, 2);
+                System.out.println(i+" i"+(int)(this.max-b+a+this.max));
+            }
+            else{
+                t+=Math.pow(Math.abs(b-a)-mcscan, 2);
+                System.out.println(i+" i"+(int)Math.abs(b-a));
+            }       }*/ 
         return t/(cscan.size()-2);
      }
     
